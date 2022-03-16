@@ -52,11 +52,17 @@ eta = st.number_input(
 )
 budgets_per_bracket = calculate_hyperband_iters(R, eta, verbose=False)
 
+# columns_per_bracket = []
+# for i in range(len(budgets_per_bracket)):
+#     columns_per_bracket.append(st.columns(2))
 
+# st.write(str(columns_per_bracket))
+st.markdown("""---""")
 for bracket, runs in budgets_per_bracket.items():
-    st.subheader("bracket: " + str(bracket))
+    col1, col2 = st.columns(2)
+    col1.subheader("bracket: " + str(bracket))
 
-    st.dataframe(
+    col2.dataframe(
         pd.DataFrame(
             {
                 "num_configs": pd.Series(runs["n_i"], dtype="int"),
@@ -64,4 +70,5 @@ for bracket, runs in budgets_per_bracket.items():
             }
         )
     )
+    st.markdown("""---""")
 
