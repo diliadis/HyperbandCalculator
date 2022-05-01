@@ -17,7 +17,7 @@ def calculate_hyperband_iters(R, eta, verbose=False):
 
         # n = int(math.ceil(int((B/R) * ((hta**s)/(s+1)))))
         n = int(math.ceil(int(B / R / (s + 1)) * eta ** s))
-        r = R * (eta ** (-s))
+        r = int(R * (eta ** (-s)))
         result_dict[n] = {"n_i": [], "r_i": []}
 
         if verbose:
